@@ -1,0 +1,3 @@
+[console_scripts]
+gmrs = console.gmrs:main
+profile = console.profiling:main
