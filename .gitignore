@@ -2,3 +2,4 @@
 *.env
 build/
 Tustable.egg-info/
+log/files/*

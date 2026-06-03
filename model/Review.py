@@ -37,6 +37,15 @@ class Review:
     photos: List[Any] = field(default_factory=list)
     attributes: Dict[str, Any] = field(default_factory=dict)
 
+    def __hash__(self):
+        return hash(self.review_id)
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, Review)
+            and self.review_id == other.review_id
+        )
+
     @classmethod
     def from_apify(cls, item: Dict[str, Any]) -> "Review":
         return cls(

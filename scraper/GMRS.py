@@ -13,7 +13,7 @@ class GoogleMapsReviewsScraper:
         self,
         place_url: str,
         max_reviews: int = 100,
-        sort_by: str = "mostRelevant",
+        sort_by: str = "lowestRanking",
     ) -> List[Dict[str, Any]]:
         """
         Estrae recensioni da Google Maps tramite l'Actor

@@ -12,7 +12,7 @@ setup(
       'console_scripts': [
             #! "cmd=module.file:start_function"
             "gmrs=console.gmrs:main",
-            "profile=console.profiling:main"
+            "reviews_time=console.reviews_time:main"
       ]  
     },
     
