@@ -3,14 +3,11 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class Review:
-    # --- place info ---
     place_id: Optional[str] = None
     place_name: Optional[str] = None
 
-    # --- review identifiers ---
     review_id: Optional[str] = None
 
-    # --- author ---
     author_name: Optional[str] = None
     author_id: Optional[str] = None
     author_url: Optional[str] = None
@@ -20,7 +17,6 @@ class Review:
     author_review_count: Optional[int] = None
     author_photo_count: Optional[int] = None
 
-    # --- review data ---
     rating: Optional[int] = None
     text: Optional[str] = None
 
@@ -29,11 +25,9 @@ class Review:
     updated_at_iso: Optional[str] = None
 
     likes_count: Optional[int] = None
-
-    # --- owner reply ---
+    
     owner_reply: Optional[str] = None
 
-    # --- extras ---
     photos: List[Any] = field(default_factory=list)
     attributes: Dict[str, Any] = field(default_factory=dict)
 
