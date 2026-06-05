@@ -12,7 +12,8 @@ setup(
       'console_scripts': [
             #! "cmd=module.file:start_function"
             "gmrs=console.gmrs:main",
-            "reviews_time=console.reviews_time:main"
+            "reviews_time=console.reviews_time:main",
+            "trustable=console.trustable:main",
       ]  
     },
     

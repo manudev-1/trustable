@@ -147,7 +147,6 @@ def main():
     
     print(f"\n✓ Full results saved to: ./log/files/log_analisi_semantica_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
 
-    
     if "--plot" in sys.argv:
         plotter = ReviewPlotter(reviews)
         plotter.show_timeline()

@@ -1,5 +1,6 @@
 from apify_client import ApifyClient
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Set
+import time
 
 from model.Review import Review
 
@@ -13,7 +14,7 @@ class GoogleMapsReviewsScraper:
         self,
         place_url: str,
         max_reviews: int = 100,
-        sort_by: str = "lowestRanking",
+        sort_by: str = "mostRelevant",
     ) -> List[Dict[str, Any]]:
         """
         Estrae recensioni da Google Maps tramite l'Actor
@@ -45,7 +46,21 @@ class GoogleMapsReviewsScraper:
             self.client.dataset(dataset_id).iterate_items()
         )
 
-    def get_reviews(
+    def get_newest_reviews(
+        self,
+        place_url: str,
+        max_reviews: int = 100,
+    ) -> List[Review]:
+
+        raw_reviews = self.scrape(
+            place_url=place_url,
+            max_reviews=max_reviews,
+            sort_by="newest",
+        )
+
+        return [Review.from_apify(item) for item in raw_reviews]
+
+    def get_most_relevant_reviews(
         self,
         place_url: str,
         max_reviews: int = 100,
@@ -57,3 +72,54 @@ class GoogleMapsReviewsScraper:
         )
 
         return [Review.from_apify(item) for item in raw_reviews]
+
+    def get_highest_rated_reviews(
+        self,
+        place_url: str,
+        max_reviews: int = 100,
+    ) -> List[Review]:
+
+        raw_reviews = self.scrape(
+            place_url=place_url,
+            max_reviews=max_reviews,
+            sort_by="highestRanking",
+        )
+
+        return [Review.from_apify(item) for item in raw_reviews]
+
+    def get_lowest_rated_reviews(
+        self,
+        place_url: str,
+        max_reviews: int = 100,
+    ) -> List[Review]:
+
+        raw_reviews = self.scrape(
+            place_url=place_url,
+            max_reviews=max_reviews,
+            sort_by="lowestRanking",
+        )
+
+        return [Review.from_apify(item) for item in raw_reviews]
+
+    def get_reviews(
+        self,
+        place_url: str,
+        max_reviews: int = 100,
+    ) -> Set[Review]:
+
+        reviews = set()
+
+        newest = self.get_newest_reviews(place_url, max_reviews)
+        time.sleep(15)
+        most_relevant = self.get_most_relevant_reviews(place_url, max_reviews)
+        time.sleep(15)
+        highest = self.get_highest_rated_reviews(place_url, max_reviews)
+        time.sleep(15)
+        lowest = self.get_lowest_rated_reviews(place_url, max_reviews)
+        
+        reviews.update(newest)
+        reviews.update(most_relevant)
+        reviews.update(highest)
+        reviews.update(lowest)
+
+        return reviews
