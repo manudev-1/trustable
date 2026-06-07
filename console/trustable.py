@@ -12,7 +12,7 @@ from analytic.SemanticAnalyzer import SemanticAnalyzer
 from analytic.TemporalAnalyzer import TemporalAnalyzer
 from analytic.ReportGenerator import ReportGenerator
 
-def analyze_place_reviews(place_data: Dict[str, Any]) -> Dict[str, Any]:
+def analyze_place_reviews(place_data: Dict[str, Any], tok_path: str = "./analytic/data/wikipedia-it.tok") -> Dict[str, Any]:
     """
     Esegue analisi completa (temporale + semantica) su review di un luogo.
     """
@@ -50,7 +50,7 @@ def analyze_place_reviews(place_data: Dict[str, Any]) -> Dict[str, Any]:
     }
     
     print(f"[Semantic] Analyzing patterns and templates...")
-    semantic_analyzer = SemanticAnalyzer(tok_path="./analytic/data/wikipedia-it.tok", reviews=reviews)
+    semantic_analyzer = SemanticAnalyzer(tok_path=tok_path, reviews=reviews)
     semantic_reports = semantic_analyzer.analyze(reviews)
     
     semantic_result = {
@@ -128,6 +128,14 @@ def main():
     )
     
     parser.add_argument(
+        '-tok', '--tokenizer', 
+        type=str, 
+        required=False,
+        default="./analytic/data/wikipedia-it.tok",
+        help="Path to the tokenizer file"
+    )
+    
+    parser.add_argument(
         '--plot',
         action='store_true',
         help="Show timeline plot after analysis"
@@ -162,7 +170,7 @@ def main():
         "reviews": reviews
     }
     
-    result = analyze_place_reviews(place_data)
+    result = analyze_place_reviews(place_data, tok_path=args.tokenizer)
     
     print("\n" + "="*80)
     print(f"Analysis Results for: {result['place_name']}")
