@@ -175,9 +175,6 @@ Analysis results are saved to `log/files/` with timestamps:
 Key dependencies include:
 
 - **apify_client**: Google Maps review scraping via Apify
-- **pandas**: Data manipulation and analysis
-- **scikit-learn**: Machine learning utilities
-- **transformers**: NLP models for semantic analysis
 - **matplotlib**: Data visualization
 - **pydantic**: Data validation
 - **typer**: CLI framework
