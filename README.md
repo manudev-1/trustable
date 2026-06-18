@@ -1,6 +1,6 @@
 # Trustable
 
-**Is a Google Business Profile trustable?**
+Trustable analyzes hundreds of Google Maps reviews and detects suspicious behavior such as review farms, coordinated campaigns, template reviews and abnormal temporal patterns.
 
 A sophisticated Python tool for analyzing Google Maps reviews to detect trustworthiness indicators and anomalies. This system uses advanced temporal and semantic analysis to identify suspicious patterns in review behavior, helping businesses and users assess the authenticity of Google Business Profiles.
 
