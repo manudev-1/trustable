@@ -13,6 +13,9 @@ Trustable performs comprehensive analysis on Google Maps reviews through:
 - **Visualization**: Generates timeline and histogram plots of review distributions
 - **Reporting**: Produces detailed JSON reports with anomaly scores and risk assessments
 
+### GIF
+<img width="1731" height="1080" alt="demo-ezgif com-resize" src="https://github.com/user-attachments/assets/d041efce-deee-4d7f-988b-0fda953e624f" />
+
 ## Installation
 
 ### Prerequisites
